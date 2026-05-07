@@ -32,8 +32,8 @@ export function FormSuccessState({ submittedData, submissionCount, onReset }) {
       </h3>
       <p className="text-xs text-on-surface-variant font-medium mt-1 mb-8">
         Submission{" "}
-        <span className="font-bold text-primary">#{submissionCount}</span>{" "}
-        saved to{" "}
+        <span className="font-bold text-primary">#{submissionCount}</span> saved
+        to{" "}
         <span className="font-mono text-on-surface bg-surface-container-low px-1.5 py-0.5 rounded text-[11px]">
           localStorage
         </span>
@@ -67,7 +67,10 @@ export function FormSuccessState({ submittedData, submissionCount, onReset }) {
       </div>
 
       <p className="text-[10px] text-on-surface-variant/50 font-medium mb-6">
-        {new Date(submittedData.submittedAt).toLocaleString()}
+        {new Date(submittedData.submittedAt).toLocaleString(undefined, {
+          dateStyle: "medium",
+          timeStyle: "short",
+        })}
       </p>
 
       <button
