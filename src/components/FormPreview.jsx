@@ -29,23 +29,26 @@ export function FormPreview({ fields }) {
       value: formValues[f.id] ?? (f.type === "checkbox" ? [] : ""),
     }));
     const count = saveSubmission(snapshot);
-    setSubmittedData({ fields: snapshot, submittedAt: new Date().toISOString() });
+    setSubmittedData({
+      fields: snapshot,
+      submittedAt: new Date().toISOString(),
+    });
     setSubmissionCount(count);
     setSubmitted(true);
   };
 
   return (
     <div className="w-full bg-white border border-outline-variant/50 rounded-2xl shadow-xl shadow-black/5 overflow-hidden mb-8">
-      <div className="bg-surface-container-low/30 px-8 py-6 border-b border-outline-variant/30">
+      <div className="bg-surface-container-low/30 px-4 md:px-8 py-4 md:py-6 border-b border-outline-variant/30">
         <h2 className="text-xl font-bold text-on-surface tracking-tight">
-          Form Preview
+          Live Preview
         </h2>
         <p className="text-xs text-on-surface-variant font-medium mt-1">
-          Fill and submit your form below
+          Try your form and submit a response
         </p>
       </div>
 
-      <div className="p-8 md:p-10">
+      <div className="p-4 md:p-8 lg:p-10">
         <AnimatePresence mode="wait">
           {fields.length === 0 ? (
             <FormEmptyState key="empty" />
@@ -80,7 +83,12 @@ export function FormPreview({ fields }) {
                     >
                       {field.label}
                       {field.required && (
-                        <span className="text-error font-bold" aria-hidden="true">*</span>
+                        <span
+                          className="text-error font-bold"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       )}
                       {field.required && (
                         <span className="sr-only">(required)</span>
